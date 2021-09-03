@@ -34,5 +34,12 @@ public class Helloworld {
 		
 		System.out.println(moneyEur);
 
+	
+		double total = 0.2;
+		for (int i = 0; i < 100; i++) {
+			  total += 0.2;
+		}
+		System.out.println(total);
+			
 	}
 }
