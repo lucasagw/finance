@@ -1,18 +1,19 @@
 package br.ucsal.pooa.finance.view;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Scanner;
 
+import br.ucsal.pooa.finance.controller.Controller;
+import br.ucsal.pooa.finance.model.Entidade;
 import br.ucsal.pooa.finance.model.Lancamento;
 
 public class Janela {
 
 	private Scanner terminal = new Scanner(System.in);
-	private List<Lancamento> lista;
+	private Controller controller;
 	
-	public Janela(List<Lancamento> listaDAO) {
-		this.lista = listaDAO;
+	public Janela(Controller controller) {
+		this.controller = controller;
 		init();
 	}
 	
@@ -54,7 +55,8 @@ public class Janela {
 	
 	public void saldo() {
 		BigDecimal saldo = BigDecimal.ZERO;
-		for (Lancamento lancamento : lista) {
+		for (Entidade entidade : controller.lista()) {
+			Lancamento lancamento = (Lancamento) entidade;
 			if(lancamento.getTipo().equals("DESPESA")) {
 				saldo = saldo.subtract(lancamento.getValor());
 			}else {
@@ -66,7 +68,7 @@ public class Janela {
 	}
 	
 	public void listar() {
-		for (Lancamento lancamento : lista) {
+		for (Entidade lancamento : controller.lista()) {
 			System.out.println(lancamento);
 		}
 		
@@ -98,7 +100,7 @@ public class Janela {
 
 		Lancamento lancamento = new Lancamento(tipo, amount, descricao);
 		
-		lista.add(lancamento);
+		controller.add(lancamento);
 		
 		init();
 	}
