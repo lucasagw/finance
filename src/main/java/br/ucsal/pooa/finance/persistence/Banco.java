@@ -6,12 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import br.ucsal.pooa.finance.exception.ErroConexaoBancoDeDados;
+
 public class Banco {
 
 	private Connection conexao;
 
-	public Banco() {
+	public Banco() throws ErroConexaoBancoDeDados {
 		// JDBC
+		//ligar um servidor hsqldb: java -cp ./hsqldb.jar org.hsqldb.server.WebServer --database.0 file:D:\projetos-catolica\br.ucsal.pooa.finance\banco\myfile.db --dbname.0 myserver
 		String url = "jdbc:hsqldb:hsql://localhost/myserver";
 		// String url = "jdbc:hsqldb:file:./banco/myfile.db";
 		// String url = "jdbc:hsqldb:mem:mymemdb";
@@ -19,15 +22,12 @@ public class Banco {
 		String senha = "";
 
 		try {
-
 			Class.forName("org.hsqldb.jdbc.JDBCDriver");
 			conexao = DriverManager.getConnection(url, usuario, senha);
 			createDatabase();
 			loadDatabase();
-		} catch (SQLException e) {
-			//System.out.println("Banco já existe: " + e.getMessage());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (SQLException | ClassNotFoundException e) {
+			throw new ErroConexaoBancoDeDados(e);
 		}
 	}
 

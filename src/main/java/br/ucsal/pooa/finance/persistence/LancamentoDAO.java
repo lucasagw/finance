@@ -11,14 +11,12 @@ import java.util.List;
 import br.ucsal.pooa.finance.model.Entidade;
 import br.ucsal.pooa.finance.model.Lancamento;
 
-public class LancamentoDAO extends GenericoDAO implements Persistencia {
+public class LancamentoDAO extends GenericoDAO{
 
 	public LancamentoDAO(Banco banco) {
 		this.banco = banco;
 
-	}
-
-	
+	}	
 
 	public List<Entidade> listar() {
 		List<Entidade> lista = new ArrayList<>();

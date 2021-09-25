@@ -11,12 +11,8 @@ public class GenericoDAO implements Persistencia {
 
 	protected Banco banco;
 	
-	public GenericoDAO(Banco banco) {
-		lista = new ArrayList<>();
-	}
-
 	public GenericoDAO() {
-	
+		lista = new ArrayList<>();
 	}
 
 	public List<Entidade> listar() {
