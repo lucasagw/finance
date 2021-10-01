@@ -15,6 +15,7 @@ public class Proxy extends ServerSocket implements Runnable {
 
 	public Proxy() throws IOException {
 		super(4444);
+		System.out.println("subiu o servidor");
 	}
 
 	@Override
