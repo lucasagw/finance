@@ -7,20 +7,19 @@ import br.ucsal.pooa.finance.controller.Controller;
 import br.ucsal.pooa.finance.exception.ValorInvalidoException;
 import br.ucsal.pooa.finance.model.Entidade;
 import br.ucsal.pooa.finance.model.Lancamento;
-import br.ucsal.pooa.finance.util.Console;
 import br.ucsal.pooa.finance.util.SegurancaThread;
 
-public class Janela {
+public class Console {
 
 	private Scanner terminal = new Scanner(System.in);
 	private Controller controller;
 	
 	public final static int SEGUNDOS = 30;
 	
-	public Janela(Controller controller) {
+	public Console(Controller controller) {
 		this.controller = controller;
-		Thread thread = new SegurancaThread();
-		thread.start();
+//		Thread thread = new SegurancaThread();
+//		thread.start();
 		init();
 	}
 	
@@ -108,7 +107,7 @@ public class Janela {
 		BigDecimal amount = BigDecimal.ZERO;
 		do {
 			try {
-				amount = Console.getValor("Digite o Valor: ", terminal);
+				amount = br.ucsal.pooa.finance.util.Console.getValor("Digite o Valor: ", terminal);
 			} catch (ValorInvalidoException e) {
 				System.out.println(e.getMessage());
 			}
