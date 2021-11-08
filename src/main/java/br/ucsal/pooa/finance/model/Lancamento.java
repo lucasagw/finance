@@ -13,10 +13,13 @@ public class Lancamento implements Entidade {
 	public static final String DESPESA = "DESPESA";
 	public static final String RECEITA = "RECEITA";
 
+	@Validacao(descricao = "getTipo")
 	private String tipo;
-
+    
+	@ValidacaoBigDecimal(minValue = 1)
 	private BigDecimal valor;
 
+	@Validacao(descricao = "getDescricao")
 	private String descricao;
 
 	public Lancamento(String tipo, BigDecimal valor, String descricao) {
